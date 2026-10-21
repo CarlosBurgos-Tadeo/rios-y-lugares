@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Roboto:wght@400;500;700&family=Titan+One&display=swap');
+
 *,
 *::before,
 *::after {
@@ -11,8 +13,8 @@ body {
 }
 
 body {
-  background: #0f1824;
-  color: var(--color-blanco);
+  background: var(--bg-main); /* Cambiado de #0f1824 al gradiente radial */
+  color: var(--color-texto);   /* Cambiado de blanco a #40491D */
   font-family: var(--font-cuerpo);
   font-size: var(--fs-cuerpo);
   line-height: 24px;
