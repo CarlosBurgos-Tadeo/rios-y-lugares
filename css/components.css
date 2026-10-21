@@ -1,33 +1,29 @@
 /* ---------- Títulos ---------- */
 .titulo {
   font-family: var(--font-titulo);
-  font-weight: 400; /* Titan One solo requiere 400 */
+  font-weight: 700;
   font-size: var(--fs-titulo);
   line-height: var(--lh-titulo);
   letter-spacing: var(--tracking-titulo);
   text-transform: uppercase;
   text-align: center;
   max-width: 224px;
-  color: var(--color-texto);
 }
 
 .subtitulo {
-  font-family: var(--font-subtitulo); /* Cambiado a Patrick Hand */
-  font-weight: 400;
+  font-family: var(--font-titulo);
+  font-weight: 700;
   font-size: var(--fs-subtitulo-2);
   text-transform: uppercase;
   text-align: center;
-  color: var(--color-texto);
 }
 
 .texto-ayuda {
-  font-family: var(--font-cuerpo);
   text-align: center;
   max-width: 249px;
-  color: var(--color-texto);
 }
 
-/* ---------- Botones (Boton 2 claro / oscuro) ---------- */
+/* ---------- Botones (button / android / outline / Boton 2) ---------- */
 .btn {
   position: relative;
   display: inline-flex;
@@ -35,25 +31,169 @@
   justify-content: center;
   min-height: 48px;
   padding: 16px 24px;
-  border-radius: var(--radius-boton); /* 30px */
-  border: 1px solid var(--color-terciario); /* #E69F88 */
-  background: var(--glass-bg); /* rgba(255, 255, 255, 0.20) */
+  border-radius: var(--radius-boton);
+  border: 1px solid var(--color-terciario);
+  background: var(--glass-bg);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   font-family: var(--font-titulo);
+  font-weight: 700;
   font-size: var(--fs-boton);
   line-height: 1.15;
   text-align: center;
   text-transform: uppercase;
-  color: var(--color-texto); /* Cambiado a #40491D para lectura clara */
+  color: var(--color-blanco);
   text-decoration: none;
-  box-shadow: var(--glow-terciario); /* Resplandor durazno (secundario) */
+  box-shadow: var(--glow-terciario);
   transition: box-shadow 0.2s, transform 0.1s;
 }
 
-.btn--primario {
-  box-shadow: var(--glow-acento); /* Resplandor lima (primario) */
+.btn:active {
+  transform: scale(0.97);
 }
+
+.btn--primario {
+  box-shadow: var(--glow-acento);
+}
+
+.btn--pequeno {
+  padding: 10px 12px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+}
+
+/* ---------- Tarjeta de acción (Consultar el código / Cambiar turno) ---------- */
+.accion {
+  width: 100%;
+  min-height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0 24px 0 35px;
+  border-radius: var(--radius-tarjeta);
+  border: 1px solid var(--color-terciario);
+  background: var(--glass-bg);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--glow-terciario-hover);
+  font-family: var(--font-titulo);
+  font-weight: 700;
+  font-size: var(--fs-boton);
+  line-height: 16px;
+  text-transform: uppercase;
+  text-align: left;
+  text-decoration: none;
+  color: var(--color-terciario);
+}
+
+.accion--destacada {
+  border-color: rgba(230, 159, 136, 0.2);
+  box-shadow: var(--glow-terciario);
+}
+
+.accion img {
+  flex: none;
+  width: 58px;
+  height: 58px;
+}
+
+/* ---------- Formularios (input / android / text / outlined) ---------- */
+.campo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.campo__label {
+  font-family: var(--font-titulo);
+  font-weight: 500;
+  font-size: var(--fs-subtitulo);
+  letter-spacing: var(--tracking-titulo);
+}
+
+.campo__input {
+  width: 100%;
+  min-height: 56px;
+  padding: 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-input);
+  background: var(--input-bg);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  letter-spacing: 0.15px;
+  font-size: 16px; /* 16px evita el zoom automático en iOS */
+}
+
+.campo__input::placeholder {
+  color: var(--color-texto-suave);
+}
+
+.campo__input:focus {
+  outline: none;
+  border-color: var(--color-acento);
+}
+
+.campo__input[aria-invalid="true"] {
+  border-color: var(--color-terciario);
+}
+
+select.campo__input {
+  appearance: none;
+  background-image: url("../assets/icons/chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 24px;
+  padding-right: 52px;
+}
+
+select.campo__input option {
+  color: var(--color-gris-900);
+}
+
+textarea.campo__input {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.campo__error {
+  color: var(--color-terciario);
+  font-size: 14px;
+}
+
+/* ---------- Avisos ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  transform: translateX(-50%);
+  z-index: 50;
+  max-width: calc(100% - 32px);
+  padding: 12px 20px;
+  border-radius: var(--radius-tarjeta);
+  background: var(--color-gris-900);
+  border: 1px solid var(--color-terciario);
+  text-align: center;
+}
+
+.sin-conexion {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-content: center;
+  gap: var(--space-2);
   padding: var(--gutter);
   background: rgba(30, 45, 64, 0.96);
   text-align: center;
