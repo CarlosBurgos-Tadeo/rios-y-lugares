@@ -1,0 +1,111 @@
+/* Contenedor de la app: ocupa toda la pantalla en móvil y se centra como "teléfono" en escritorio */
+.app {
+  position: relative;
+  min-height: 100dvh;
+  max-width: var(--app-max-width);
+  margin-inline: auto;
+  background: var(--color-fondo);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.view {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding:
+    calc(env(safe-area-inset-top, 0px) + 72px)
+    var(--gutter)
+    calc(env(safe-area-inset-bottom, 0px) + var(--space-4));
+}
+
+.view__top {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 56px);
+  left: 24px;
+  z-index: 2;
+}
+
+.view__actions {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Fondos decorativos de Figma: degradados radiales + río */
+.bg-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-glow--azul {
+  background: radial-gradient(140% 52% at 50% -2%, #97afce 0%, #5a6e87 24%, #1e2d40 48%);
+}
+
+.bg-glow--salmon {
+  background:
+    radial-gradient(140% 52% at 50% -2%, #e69f88 0%, #825664 24%, #1e2d40 48%),
+    radial-gradient(140% 40% at 50% 100%, #97afce 0%, #1e2d40 50%);
+  background-blend-mode: normal;
+}
+
+.bg-glow--esquinas {
+  background:
+    radial-gradient(60% 30% at 0% 0%, #e69f88 0%, rgba(30, 45, 64, 0) 100%),
+    radial-gradient(70% 30% at 100% 100%, #aabf06 0%, rgba(30, 45, 64, 0) 100%);
+}
+
+.bg-river {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.bg-river--horizontal {
+  width: 563.526px;
+  left: -83px;
+  bottom: 0;
+  transform: translateY(18%) rotate(-24.44deg);
+}
+
+.bg-river--diagonal {
+  width: 738.185px;
+  left: -100px;
+  bottom: -60px;
+  transform: rotate(-54.93deg);
+  transform-origin: center;
+}
+
+/* Escritorio: marco de demostración */
+@media (min-width: 768px) {
+  body {
+    display: grid;
+    place-items: center;
+    padding: var(--space-3);
+  }
+
+  .app {
+    width: 100%;
+    min-height: min(852px, calc(100dvh - 48px));
+    border-radius: 32px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+
+  .view {
+    min-height: min(852px, calc(100dvh - 48px));
+    padding-top: 72px;
+  }
+
+  .view__top {
+    top: 56px;
+  }
+}

@@ -1,0 +1,58 @@
+/* Figma: "Partida rapida - turno" (427:1789) y "Agregar integrantes" (427:1668) */
+.turno__puntaje {
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  font-size: var(--fs-puntaje);
+  line-height: 1;
+  color: var(--color-numero);
+  font-variant-numeric: tabular-nums;
+  margin-top: var(--space-4);
+}
+
+.turno__puntaje.is-bump {
+  animation: bump 0.35s ease-out;
+}
+
+@keyframes bump {
+  40% { transform: scale(1.12); }
+}
+
+.turno__ajuste {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.turno__ajuste .btn {
+  min-width: 64px;
+}
+
+.marcador {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.marcador li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: var(--radius-tarjeta);
+  background: var(--input-bg);
+}
+
+.marcador li[aria-current="true"] {
+  outline: 2px solid var(--color-acento);
+}
+
+.jugadores__form {
+  width: 100%;
+  display: flex;
+  gap: var(--space-1);
+}
+
+.jugadores__form .campo__input {
+  flex: 1;
+}

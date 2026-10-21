@@ -1,0 +1,46 @@
+/* Tokens extraídos de Figma (páginas 8 "Mock Ups" y 9 "Mock Ups 2") */
+:root {
+  /* Colores — "Modo oscuro" */
+  --color-fondo: #1e2d40;          /* Modo oscuro/Fondo */
+  --color-blanco: #ffffff;         /* Modo oscuro/Blanco */
+  --color-texto-suave: rgba(255, 255, 255, 0.7);
+  --color-terciario: #e69f88;      /* Modo claro/Terciario claro (salmón) */
+  --color-acento: #aabf06;         /* Verde lima de los botones primarios */
+  --color-azul-claro: #97afce;     /* Campo de texto/Campo de texto */
+  --color-numero: #c9ced6;         /* Número del puntaje */
+  --color-gris-900: #020202;
+
+  /* Superficies "glass" */
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --input-bg: rgba(151, 175, 206, 0.3);
+
+  /* Sombras internas de botones (Boton 2 claro / oscuro) */
+  --glow-acento: inset 0 0 30.4px 0 rgba(170, 191, 6, 0.7);
+  --glow-terciario: inset 0 0 30.4px 0 rgba(230, 159, 136, 0.7);
+  --glow-terciario-hover: inset 0 0 16.4px 0 rgba(230, 159, 136, 0.4);
+
+  /* Tipografía — Style tile */
+  --font-titulo: "Montserrat", system-ui, sans-serif;
+  --font-cuerpo: "Roboto", system-ui, sans-serif;
+  --fs-titulo: 34px;      /* Titulo Cli: Bold 34/41, +0.37 */
+  --lh-titulo: 41px;
+  --fs-subtitulo-2: 25px; /* Subtitulo 2: Bold 25 */
+  --fs-subtitulo: 24px;   /* Subtitulo Cli: Medium 24 */
+  --fs-boton: 20px;       /* Boton texto: Bold 20/16 */
+  --fs-cuerpo: 16px;      /* Subtitle 1: Regular 16/24, +0.15 */
+  --fs-puntaje: clamp(140px, 45vw, 200px);
+  --tracking-titulo: 0.37px;
+
+  /* Espaciado y radios */
+  --gutter: 32px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --radius-boton: 30px;
+  --radius-input: 20px;
+  --radius-tarjeta: 8px;
+
+  /* Layout: frame de diseño 393 × 852 */
+  --app-max-width: 430px;
+}

@@ -1,0 +1,57 @@
+/* Figma: "QR - grupo carlos" (427:1881) */
+.scan__visor {
+  position: relative;
+  width: min(100%, 329px);
+  aspect-ratio: 329 / 342;
+  margin-top: var(--space-2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* La librería inyecta un <video>; lo hacemos llenar el visor */
+.scan__camara,
+.scan__camara video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+/* Esquinas del marco (4 "L" redondeadas, blanco 75 %) */
+.scan__marco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --c: rgba(255, 255, 255, 0.75);
+  --g: 6px;
+  --l: 44px;
+  background:
+    linear-gradient(var(--c) 0 0) top left / var(--l) var(--g),
+    linear-gradient(var(--c) 0 0) top left / var(--g) var(--l),
+    linear-gradient(var(--c) 0 0) top right / var(--l) var(--g),
+    linear-gradient(var(--c) 0 0) top right / var(--g) var(--l),
+    linear-gradient(var(--c) 0 0) bottom left / var(--l) var(--g),
+    linear-gradient(var(--c) 0 0) bottom left / var(--g) var(--l),
+    linear-gradient(var(--c) 0 0) bottom right / var(--l) var(--g),
+    linear-gradient(var(--c) 0 0) bottom right / var(--g) var(--l);
+  background-repeat: no-repeat;
+}
+
+.scan__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 48px;
+}
+
+.scan__placeholder img {
+  width: 100%;
+  height: auto;
+  opacity: 0.8;
+}
+
+.scan__estado {
+  min-height: 24px;
+  text-align: center;
+  color: var(--color-texto-suave);
+}

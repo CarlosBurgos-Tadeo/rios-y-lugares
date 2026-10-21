@@ -1,0 +1,50 @@
+[
+  {
+    "id": "taruya",
+    "nombre": "Taruya",
+    "puntos": -2,
+    "efecto": "",
+    "commonsQuery": "Eichhornia crassipes",
+    "descripcion": "Planta acuática flotante (buchón de agua). Por confirmar con el equipo: texto biocultural."
+  },
+  {
+    "id": "manati",
+    "nombre": "Manatí",
+    "puntos": 0,
+    "efecto": "Agrega 3 cartas de pesca al río",
+    "commonsQuery": "Trichechus manatus",
+    "descripcion": "Mamífero acuático de los ríos y ciénagas del Caribe colombiano. Por confirmar con el equipo: texto biocultural."
+  },
+  {
+    "id": "pez-basa",
+    "nombre": "Pez basa",
+    "puntos": -2,
+    "efecto": "",
+    "commonsQuery": "Pangasianodon hypophthalmus",
+    "descripcion": "Especie introducida. Por confirmar con el equipo: texto biocultural."
+  },
+  {
+    "id": "bocachico",
+    "nombre": "Bocachico",
+    "puntos": 1,
+    "efecto": "",
+    "commonsQuery": "Prochilodus magdalenae",
+    "descripcion": "Pez migratorio emblemático de la subienda del río Magdalena. Por confirmar con el equipo: texto biocultural."
+  },
+  {
+    "id": "bagre-rayado",
+    "nombre": "Bagre rayado",
+    "puntos": 2,
+    "efecto": "",
+    "commonsQuery": "Pseudoplatystoma magdaleniatum",
+    "descripcion": "Gran bagre de la cuenca del Magdalena. Por confirmar con el equipo: texto biocultural."
+  },
+  {
+    "id": "caiman",
+    "nombre": "Caimán",
+    "puntos": 0,
+    "efecto": "Si hay peces basa visibles en el río, retíralos",
+    "commonsQuery": "Crocodylus acutus",
+    "descripcion": "Por confirmar con el equipo: especie exacta y texto biocultural."
+  }
+]

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1e2d40">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Ríos y Lugares — app de acompañamiento del juego de mesa (Wikimedia Colombia)">
+  <title>Ríos y Lugares</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/views/scan.css">
+  <link rel="stylesheet" href="css/views/score.css">
+  <link rel="stylesheet" href="css/views/card.css">
+</head>
+<body>
+  <div class="app" id="app">
+
+    <!-- ============ INICIO ============ -->
+    <section class="view" data-view="inicio" aria-labelledby="t-inicio" hidden>
+      <div class="bg-glow bg-glow--azul" aria-hidden="true"></div>
+      <img class="bg-river bg-river--horizontal" src="assets/img/rio-horizontal.svg" width="563.526" height="241.384" alt="" aria-hidden="true">
+      <h1 class="titulo" id="t-inicio">Ríos y Lugares</h1>
+      <p class="texto-ayuda">Acompañante digital del juego de mesa</p>
+      <nav class="view__actions" aria-label="Menú principal">
+        <a class="btn btn--primario" href="#/jugadores">Nueva partida</a>
+        <a class="btn" href="#/escanear">Escanear carta</a>
+        <a class="btn" href="#/crear">Crear carta</a>
+        <a class="btn btn--pequeno" href="#/contribuciones">Mis contribuciones</a>
+      </nav>
+    </section>
+
+    <!-- ============ JUGADORES (Agregar integrantes) ============ -->
+    <section class="view" data-view="jugadores" aria-labelledby="t-jugadores" hidden>
+      <div class="bg-glow bg-glow--azul" aria-hidden="true"></div>
+      <a class="view__top icon-btn" href="#/inicio" aria-label="Volver"><img src="assets/icons/chevron-left.svg" width="36" height="36" alt=""></a>
+      <h1 class="titulo" id="t-jugadores">Nuevo jugador</h1>
+      <form class="jugadores__form" id="form-jugador" autocomplete="off">
+        <label class="visually-hidden" for="nombre-jugador">Nombre</label>
+        <input class="campo__input" id="nombre-jugador" name="nombre" placeholder="Nombre" maxlength="20" required>
+        <button class="btn btn--pequeno" type="submit">Agregar</button>
+      </form>
+      <ul class="marcador" id="lista-jugadores" aria-live="polite"></ul>
+      <div class="view__actions">
+        <button class="btn btn--primario" id="btn-comenzar" type="button" disabled>Comenzar</button>
+      </div>
+    </section>
+
+    <!-- ============ TURNO / PUNTAJE (Partida rapida - turno) ============ -->
+    <section class="view" data-view="turno" aria-labelledby="t-turno" hidden>
+      <div class="bg-glow bg-glow--salmon" aria-hidden="true"></div>
+      <img class="bg-river bg-river--horizontal" src="assets/img/rio-horizontal.svg" width="563.526" height="241.384" alt="" aria-hidden="true">
+      <a class="view__top icon-btn" href="#/inicio" aria-label="Salir de la partida"><img src="assets/icons/close.svg" width="36" height="36" alt=""></a>
+      <h1 class="titulo" id="t-turno">Turno de <span data-bind="jugador-actual">—</span></h1>
+      <p class="turno__puntaje" id="puntaje-actual" aria-live="polite">0</p>
+      <h2 class="subtitulo">Puntaje</h2>
+      <div class="turno__ajuste" role="group" aria-label="Ajustar puntaje">
+        <button class="btn btn--pequeno" type="button" data-delta="-1" aria-label="Restar un punto">−1</button>
+        <button class="btn btn--pequeno btn--primario" type="button" data-delta="1" aria-label="Sumar un punto">+1</button>
+      </div>
+      <div class="view__actions">
+        <a class="accion accion--destacada" href="#/escanear">Consultar el código <img src="assets/icons/qr.svg" width="58" height="58" alt=""></a>
+        <button class="accion" type="button" id="btn-cambiar-turno">Cambiar turno <img src="assets/icons/arrow-right.svg" width="57" height="57" alt=""></button>
+        <ul class="marcador" id="marcador"></ul>
+      </div>
+    </section>
+
+    <!-- ============ ESCANEAR (QR) ============ -->
+    <section class="view" data-view="escanear" aria-labelledby="t-escanear" hidden>
+      <div class="bg-glow bg-glow--azul" aria-hidden="true"></div>
+      <img class="bg-river bg-river--horizontal" src="assets/img/rio-horizontal.svg" width="563.526" height="241.384" alt="" aria-hidden="true">
+      <button class="view__top icon-btn" type="button" data-back aria-label="Cerrar"><img src="assets/icons/close.svg" width="36" height="36" alt=""></button>
+      <h1 class="titulo" id="t-escanear">Escanea la carta</h1>
+      <p class="texto-ayuda">Apunta el código QR dentro del marco</p>
+      <div class="scan__visor">
+        <div class="scan__camara" id="qr-reader"></div>
+        <div class="scan__placeholder" id="qr-placeholder"><img src="assets/icons/qr.svg" width="58" height="58" alt=""></div>
+        <div class="scan__marco" aria-hidden="true"></div>
+      </div>
+      <p class="scan__estado" id="qr-estado" role="status"></p>
+      <div class="view__actions">
+        <button class="btn btn--primario" type="button" id="btn-escanear">Escanear</button>
+        <button class="btn btn--pequeno" type="button" id="btn-reescanear" hidden>Escanear de nuevo</button>
+      </div>
+    </section>
+
+    <!-- ============ CARTA / EVENTO ============ -->
+    <section class="view" data-view="carta" aria-labelledby="t-carta" hidden>
+      <div class="bg-glow bg-glow--azul" aria-hidden="true"></div>
+      <button class="view__top icon-btn" type="button" data-back aria-label="Volver"><img src="assets/icons/chevron-left.svg" width="36" height="36" alt=""></button>
+      <h1 class="titulo" id="t-carta">Evento</h1>
+      <article class="carta" id="carta">
+        <header class="carta__cabecera"><span data-bind="carta-nombre"></span><span class="carta__puntos" data-bind="carta-puntos"></span></header>
+        <img class="carta__imagen" id="carta-imagen" alt="">
+        <p class="carta__efecto" data-bind="carta-efecto"></p>
+      </article>
+      <section class="info" aria-labelledby="t-info">
+        <h2 id="t-info">Información biocultural</h2>
+        <p data-bind="carta-descripcion"></p>
+        <p><a id="carta-commons" target="_blank" rel="noopener">Ver en Wikimedia Commons ↗</a></p>
+      </section>
+      <div class="view__actions">
+        <button class="btn btn--primario" type="button" id="btn-aplicar-carta" hidden></button>
+        <button class="btn btn--pequeno" type="button" id="btn-continuar">Continuar</button>
+      </div>
+    </section>
+
+    <!-- ============ CREAR CARTA (Generar contribución) ============ -->
+    <section class="view" data-view="crear" aria-labelledby="t-crear" hidden>
+      <div class="bg-glow bg-glow--esquinas" aria-hidden="true"></div>
+      <img class="bg-river bg-river--diagonal" src="assets/img/rio-diagonal.svg" width="738.185" height="195.246" alt="" aria-hidden="true">
+      <a class="view__top icon-btn" href="#/inicio" aria-label="Volver"><img src="assets/icons/chevron-left.svg" width="36" height="36" alt=""></a>
+      <h1 class="titulo" id="t-crear">Crear nueva carta</h1>
+      <form class="crear__form" id="form-carta" novalidate>
+        <label class="foto">
+          <img class="foto__icono" src="assets/icons/camera.svg" width="62" height="62" alt="">
+          <span>Tomar foto<br>de tu carta</span>
+          <img class="foto__preview" id="foto-preview" alt="Vista previa de la foto" hidden>
+          <input type="file" name="foto" accept="image/*" capture="environment" required>
+        </label>
+        <p class="campo__error" data-error="foto" hidden></p>
+
+        <div class="campo">
+          <label class="campo__label" for="c-titulo">Título</label>
+          <input class="campo__input" id="c-titulo" name="titulo" placeholder="Texto" maxlength="80" required>
+          <p class="campo__error" data-error="titulo" hidden></p>
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="c-categoria">Categoría</label>
+          <select class="campo__input" id="c-categoria" name="categoria" required>
+            <option value="">Selecciona</option>
+          </select>
+          <p class="campo__error" data-error="categoria" hidden></p>
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="c-descripcion">Descripción</label>
+          <textarea class="campo__input" id="c-descripcion" name="descripcion" placeholder="Texto" maxlength="500" required></textarea>
+          <p class="campo__error" data-error="descripcion" hidden></p>
+        </div>
+
+        <div class="view__actions">
+          <button class="btn btn--primario" type="submit">Guardar contribución</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ============ CONTRIBUCIONES (estado en Commons) ============ -->
+    <section class="view" data-view="contribuciones" aria-labelledby="t-contrib" hidden>
+      <div class="bg-glow bg-glow--azul" aria-hidden="true"></div>
+      <a class="view__top icon-btn" href="#/inicio" aria-label="Volver"><img src="assets/icons/chevron-left.svg" width="36" height="36" alt=""></a>
+      <h1 class="titulo" id="t-contrib">Mis aportes</h1>
+      <ul class="marcador" id="lista-contribuciones" aria-live="polite"></ul>
+    </section>
+
+    <!-- Aviso de conexión obligatoria -->
+    <div class="sin-conexion" id="sin-conexion" role="alertdialog" aria-labelledby="t-offline" hidden>
+      <h2 class="subtitulo" id="t-offline">Sin conexión</h2>
+      <p>Ríos y Lugares necesita internet. Revisa tu conexión para continuar.</p>
+    </div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+
+  <!-- Lector QR (html5-qrcode, versión fija) -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
