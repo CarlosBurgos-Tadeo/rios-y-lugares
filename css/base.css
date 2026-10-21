@@ -13,8 +13,8 @@ body {
 }
 
 body {
-  background: var(--bg-main); /* Cambiado de #0f1824 al gradiente radial */
-  color: var(--color-texto);   /* Cambiado de blanco a #40491D */
+  background: #0f1824;
+  color: var(--color-blanco);
   font-family: var(--font-cuerpo);
   font-size: var(--fs-cuerpo);
   line-height: 24px;
